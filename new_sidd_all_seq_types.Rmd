@@ -170,7 +170,7 @@ library(Biostrings)
 
 #better way to find oligos frequnces with biostrigs
 all_seqs_oligos_freq <- c()
-for (i in list(expseqs, notseqs, genseqs, islseqs, lowscoreseqs_short)){
+for (i in list(expseqs, notseqs, genseqs, islseqs, lowscoreseqs_short, e.coli_U00096.2)){
   print(length(i))
   tmp <- DNAString(paste0(unlist(i), collapse = ''))
   
@@ -181,7 +181,7 @@ all_seqs_oligos_freq <- cbind(all_seqs_oligos_freq, oligonucleotideFrequency(tmp
 
 
 
-colnames(all_seqs_oligos_freq) <- c('expseqs', 'notseqs', 'genseqs', 'islseqs', 'lowscoreseqs')
+colnames(all_seqs_oligos_freq) <- c('Promoters', 'Non-promoters', 'Genes', 'Promoter islands', 'Lowscore', 'Complete genome')
 View(all_seqs_oligos_freq)
 #phrasetables_6 <- lapply(grep('*_ng6', x = ls(), value = T), FUN = function(x) {get.phrasetable(get(x))}) #no [1:20,]
 
@@ -213,7 +213,8 @@ fviz_pca_biplot(PCA,
              axes = c (1,2),
              #labelsize = label.size,
              #alpha.ind="contrib",
-             col.ind = 'contrib'
+             col.ind = 'contrib',
+             col.var = 'black'
              ) + scale_color_gradient2(low="white", 
                                        mid="blue",
                                        high="red", 
@@ -472,12 +473,12 @@ load('/home/jane/Документы/Misha/mol_a_2018/sidd_5000_1000_list_whole_e
 load('/home/jane/Документы/Misha/mol_a_2018/sidd_7500_1000_list.rda')
 
 
-sidd_5000_1000_df <- c()
-for (i in sidd_5000_1000_list) {
+#sidd_5000_1000_df <- c()
+#for (i in sidd_5000_1000_list) {
   #if (nrow(i)<5000) {sidd_5000_1000_df <- rbind(sidd_5000_1000_df, i)
   #} else if (nrow(i)==5000) {
-    sidd_5000_1000_df <- rbind(sidd_5000_1000_df, i[-c(4001:5000), ])
-  }
+ #   sidd_5000_1000_df <- rbind(sidd_5000_1000_df, i[-c(4001:5000), ])
+  #}
 
 nrow(sidd_5000_1000_df) == nchar(e.coli_U00096.2)
 
